@@ -1,0 +1,40 @@
+---
+const { currentLang = "ne" } = Astro.props;
+const path = Astro.url.pathname.replace(/^\/?(ne|en)\//, "/");
+const otherLang = currentLang === "ne" ? "en" : "ne";
+const otherLabel = currentLang === "ne" ? "EN" : "नेपाली";
+const otherUrl = `/${otherLang}${path}`;
+---
+
+<nav class="lang-switcher" aria-label="Language switcher">
+  <a href={otherUrl} class="lang-link" hreflang={otherLang}>
+    {otherLabel}
+  </a>
+  <span class="lang-sep">|</span>
+  <span class="lang-current">{currentLang === "ne" ? "नेपाली" : "EN"}</span>
+</nav>
+
+<style>
+  .lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+  }
+  .lang-link {
+    color: var(--color-slate-mid);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+  .lang-link:hover {
+    color: var(--color-forest-deep);
+  }
+  .lang-sep {
+    color: var(--color-slate-light);
+  }
+  .lang-current {
+    font-weight: 600;
+    color: var(--color-forest-deep);
+  }
+</style>

@@ -1,0 +1,38 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const { lang = "ne", title, description } = Astro.props;
+
+const siteTitle = "Surya Kiran Renewable Energy Pvt. Ltd.";
+const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
+const metaDesc = description || "Planning, designing, building, and maintaining the infrastructure and energy systems that power Nepal's future.";
+---
+
+<!DOCTYPE html>
+<html lang={lang} class={lang === "ne" ? "lang-ne" : ""}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={metaDesc} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" hreflang="ne" href={`https://suryakiran.vercel.app/ne/${Astro.url.pathname.replace(/^\/?(en|ne)\//, "")}`} />
+    <link rel="alternate" hreflang="en" href={`https://suryakiran.vercel.app/en/${Astro.url.pathname.replace(/^\/?(en|ne)\//, "")}`} />
+    <link rel="alternate" hreflang="x-default" href="https://suryakiran.vercel.app/ne/" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={metaDesc} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <Header lang={lang} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

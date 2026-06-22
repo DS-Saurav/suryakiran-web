@@ -1,0 +1,141 @@
+---
+const { lang = "ne" } = Astro.props;
+const isNe = lang === "ne";
+
+const heading = isNe ? "ग्राहक प्रतिबद्धता" : "Client Commitment";
+const tagline = isNe ? "हामी केको पछाडि उभिन्छौं" : "What We Stand Behind";
+const body = isNe
+  ? "ग्राहकसँगको हाम्रो सम्बन्ध हस्तान्तरणमा सकिँदैन। निर्धारित मर्मत, कार्यसम्पादन अनुगमन, र वीरेन्द्रनगरमा उत्तरदायी स्थानीय उपस्थितिले हामीले बनाएको कुरा मौन रूपमा, भरपर्दो रूपमा, दीर्घकालीन रूपमा काम गरिरहन्छ। रिपोर्टिङमा पारदर्शिता र सरकारी खरिद मापदण्डको पालना हाम्रो लागि भिन्नता होइन; यो आधार रेखा हो।"
+  : "Our relationship with a client does not end at handover. Scheduled maintenance, performance monitoring, and a responsive local presence in Birendranagar mean that what we build continues to perform — quietly, reliably, for the long term. Transparency in reporting and adherence to government procurement standards are not differentiators to us; they are the baseline.";
+
+const steps = isNe
+  ? [
+    { num: "01", title: "सर्वेक्षण र अनुसन्धान", desc: "हाम्रो आफ्नै टोलीले साइटमा स्थलाकृतिक, जलवैज्ञानिक, र भू-प्राविधिक डेटा सङ्कलन।" },
+    { num: "02", title: "डिजाइन र DPR", desc: "स्वीकृति पेशको लागि तयार इन्जिनियरिङ रेखाचित्र, विशिष्टता, र दस्तावेज।" },
+    { num: "03", title: "निर्माण", desc: "संरचित QA प्रोटोकल र हरेक चरणमा साइट पर्यवेक्षणको साथ आन्तरिक कार्यान्वयन।" },
+    { num: "04", title: "कमिसनिङ र हस्तान्तरण", desc: "प्रणाली परीक्षण, ग्राहक परिचय, र औपचारिक समापन दस्तावेज।" },
+    { num: "05", title: "मर्मत र समर्थन", desc: "हाम्रो वीरेन्द्रनगर आधारबाट निर्धारित सेवा र उत्तरदायी स्थानीय समर्थन।" },
+  ]
+  : [
+    { num: "01", title: "Survey & Investigation", desc: "Topographic, hydrological, and geotechnical data gathered on-site by our own teams." },
+    { num: "02", title: "Design & DPR", desc: "Engineering drawings, specifications, and documentation prepared for approval submission." },
+    { num: "03", title: "Construction", desc: "In-house execution with structured QA protocols and site supervision at every stage." },
+    { num: "04", title: "Commissioning & Handover", desc: "System testing, client induction, and formal completion documentation." },
+    { num: "05", title: "Maintenance & Support", desc: "Scheduled servicing and responsive local support from our Birendranagar base." },
+  ];
+
+const bullets = isNe
+  ? [
+    "पूर्ण परियोजना जीवनचक्र एउटै जवाफदेही टोली मुनि — कुनै हस्तान्तरण छैन, जिम्मेवारीमा कुनै कमी छैन।",
+    "राष्ट्रिय खरिद र इन्जिनियरिङ मापदण्डको अनुपालन न्यूनतमको रूपमा, भिन्नताको रूपमा होइन।",
+    "कर्णाली प्रदेशमा स्थानीय उपस्थिति क्षेत्रीय परियोजनाको लागि क्षमता र पहुँचका साथ।",
+  ]
+  : [
+    "Full project lifecycle under one accountable team — no handoffs, no gaps in responsibility.",
+    "Compliance with national procurement and engineering standards as a minimum, not a differentiator.",
+    "Local presence in Karnali Province with the capacity and reach for regional deployment.",
+  ];
+---
+
+<section class="section commitment-section animate-section" id="commitment">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">{heading}</span>
+      <h2 class="section-heading">{tagline}</h2>
+      <hr class="section-rule" />
+      <p class="section-subheading">{body}</p>
+    </div>
+    <div class="commitment-steps">
+      {steps.map((step) => (
+        <div class="step-item">
+          <span class="step-num">{step.num}</span>
+          <div class="step-content">
+            <h3 class="step-title">{step.title}</h3>
+            <p class="step-desc">{step.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="commitment-bullets">
+      {bullets.map((b) => (
+        <div class="bullet-item">
+          <span class="bullet-icon"></span>
+          <p>{b}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .commitment-section {
+    background-color: var(--color-white);
+  }
+  .commitment-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 3rem;
+  }
+  .step-item {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--color-slate-light);
+  }
+  .step-num {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 3rem;
+  }
+  .lang-ne .step-num {
+    font-family: var(--font-deva-heading);
+  }
+  .step-title {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    margin-bottom: 0.375rem;
+  }
+  .step-desc {
+    font-size: 0.9rem;
+    color: var(--color-slate-mid);
+    line-height: 1.6;
+  }
+  .commitment-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    background-color: var(--color-ivory);
+    border-left: 3px solid var(--color-gold);
+  }
+  .bullet-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .bullet-icon {
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 0.6rem;
+  }
+  .bullet-item p {
+    font-size: 0.9rem;
+    color: var(--color-slate-dark);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .step-item {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style>

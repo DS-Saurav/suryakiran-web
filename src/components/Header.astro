@@ -1,0 +1,211 @@
+---
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+
+const { lang = "ne" } = Astro.props;
+const prefix = `/${lang}`;
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+const navEN: NavItem[] = [
+  { label: "Home", href: `${prefix}/` },
+  { label: "About", href: `${prefix}/about` },
+  { label: "Services", href: `${prefix}/services` },
+  { label: "Impact", href: `${prefix}/impact` },
+  { label: "Commitment", href: `${prefix}/commitment` },
+  { label: "Contact", href: `${prefix}/contact` },
+];
+
+const navNE: NavItem[] = [
+  { label: "गृहपृष्ठ", href: `${prefix}/` },
+  { label: "हाम्रो बारे", href: `${prefix}/about` },
+  { label: "सेवाहरू", href: `${prefix}/services` },
+  { label: "प्रभाव", href: `${prefix}/impact` },
+  { label: "प्रतिबद्धता", href: `${prefix}/commitment` },
+  { label: "सम्पर्क", href: `${prefix}/contact` },
+];
+
+const navItems = lang === "ne" ? navNE : navEN;
+const ctaHref = `${prefix}/contact`;
+const ctaLabel = lang === "ne" ? "परामर्श लिनुहोस्" : "Get in Touch";
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href={`${prefix}/`} class="logo">
+      <span class="logo-mark">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="15" fill="#1B3A2D"/>
+          <path d="M16 6 L18 12 L24 12 L19 15 L21 21 L16 17 L11 21 L13 15 L8 12 L14 12 Z" fill="#C5A55A"/>
+        </svg>
+      </span>
+      <span class="logo-text">
+        <span class="logo-name">SURYA KIRAN</span>
+        <span class="logo-sub">Renewable Energy</span>
+      </span>
+    </a>
+    <nav class="nav-primary" aria-label="Main navigation">
+      {navItems.map((item) => (
+        <a href={item.href} class="nav-link">{item.label}</a>
+      ))}
+    </nav>
+    <div class="header-actions">
+      <LanguageSwitcher currentLang={lang} />
+      <a href={ctaHref} class="btn btn-primary header-cta">{ctaLabel}</a>
+    </div>
+    <button class="menu-toggle" aria-label="Toggle menu" data-menu-toggle>
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-slate-light);
+    padding: 0.75rem 0;
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+  }
+  .logo-name {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-forest-deep);
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+  .logo-sub {
+    font-size: 0.6875rem;
+    color: var(--color-slate-mid);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .nav-primary {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    margin-left: auto;
+  }
+  .nav-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-slate-dark);
+    text-decoration: none;
+    transition: color var(--transition);
+    position: relative;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-gold);
+    transition: width var(--transition);
+  }
+  .nav-link:hover::after {
+    width: 100%;
+  }
+  .nav-link:hover {
+    color: var(--color-forest-deep);
+  }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .header-cta {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.8125rem;
+    white-space: nowrap;
+  }
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-forest-deep);
+    transition: var(--transition);
+  }
+
+  @media (max-width: 768px) {
+    .header-inner {
+      flex-wrap: wrap;
+    }
+    .nav-primary,
+    .header-actions {
+      display: none;
+      width: 100%;
+    }
+    .nav-primary.nav-open {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0 0.5rem;
+      order: 3;
+    }
+    .header-actions.nav-open {
+      display: flex;
+      justify-content: center;
+      padding-bottom: 0.5rem;
+      order: 4;
+      border-top: 1px solid var(--color-slate-light);
+      padding-top: 1rem;
+    }
+    .menu-toggle {
+      display: flex;
+      margin-left: auto;
+    }
+    .menu-toggle.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector("[data-menu-toggle]");
+  const nav = document.querySelector(".nav-primary");
+  const actions = document.querySelector(".header-actions");
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      const isOpen = nav.classList.toggle("nav-open");
+      actions?.classList.toggle("nav-open");
+      toggle.classList.toggle("active");
+    });
+  }
+</script>

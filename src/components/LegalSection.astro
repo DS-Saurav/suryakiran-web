@@ -1,0 +1,205 @@
+---
+const { lang = "ne" } = Astro.props;
+const isNe = lang === "ne";
+
+const effectiveDate = isNe ? "जनवरी २०२५" : "January 2025";
+const companyName = "सूर्य किरण रिन्युएबल एनर्जी प्रा.लि.";
+const companyNameEN = "Surya Kiran Renewable Energy Pvt. Ltd.";
+const companyAddress = "वीरेन्द्रनगर, सुर्खेत, कर्णाली प्रदेश, नेपाल";
+const companyAddressEN = "Birendranagar, Surkhet, Karnali Province, Nepal";
+const email = "suryakiranenergy3@gmail.com";
+const website = "suryakiran.vercel.app";
+---
+
+<section class="section legal-section animate-section" id="legal">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">{isNe ? "कानुनी" : "Legal"}</span>
+      <h2 class="section-heading">{isNe ? "कानुनी जानकारी" : "Legal Information"}</h2>
+      <hr class="section-rule" />
+      <p class="section-subheading">{isNe ? `प्रभावकारी मिति: ${effectiveDate}` : `Effective Date: ${effectiveDate}`}</p>
+    </div>
+
+    <!-- Privacy Policy -->
+    <article class="legal-article">
+      <h3 class="legal-heading">{isNe ? "गोपनीयता नीति" : "Privacy Policy"}</h3>
+
+      <h4>{isNe ? "१. परिचय" : "1. Introduction"}</h4>
+      <p>
+        {isNe
+          ? `${companyName} ("हामी", "हाम्रो") तपाईंको गोपनीयताप्रति प्रतिबद्ध छ। यो गोपनीयता नीतिले हाम्रो वेबसाइट ${website} मा तपाईंको भ्रमणको क्रममा तपाईंको व्यक्तिगत जानकारी कसरी सङ्कलन, प्रयोग र सुरक्षा गरिन्छ भन्ने विवरण दिन्छ।`
+          : `${companyNameEN} ("we", "our", "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal information when you visit our website ${website}.`}
+      </p>
+
+      <h4>{isNe ? "२. हामीले सङ्कलन गर्ने जानकारी" : "2. Information We Collect"}</h4>
+      <p>
+        {isNe
+          ? "हामी तपाईंले हामीलाई स्वेच्छिक रूपमा प्रदान गर्ने जानकारी मात्र सङ्कलन गर्छौं, जसमा: तपाईंको नाम, संस्थाको नाम, इमेल ठेगाना, र तपाईंले हाम्रो सम्पर्क फारम मार्फत पेश गर्नुभएको कुनै पनि सन्देश वा कागजातहरू समावेश छन्।"
+          : "We only collect information you voluntarily provide to us, including: your name, organisation name, email address, and any messages or documents you submit through our contact form."}
+      </p>
+
+      <h4>{isNe ? "३. जानकारीको प्रयोग" : "3. How We Use Your Information"}</h4>
+      <p>
+        {isNe
+          ? "हामी तपाईंको जानकारी प्रयोग गर्छौं: (क) तपाईंको सोधपुछ र टेन्डर पेश गर्ने अनुरोधहरूको जवाफ दिन; (ख) हाम्रा सेवाहरूको बारेमा जानकारी प्रदान गर्न; (ग) हाम्रो कानुनी दायित्वहरूको पालना गर्न।"
+          : "We use your information to: (a) respond to your enquiries and tender submissions; (b) provide information about our services; (c) comply with our legal obligations."}
+      </p>
+
+      <h4>{isNe ? "४. डेटा सुरक्षा" : "4. Data Security"}</h4>
+      <p>
+        {isNe
+          ? "हामी तपाईंको व्यक्तिगत जानकारीलाई अनधिकृत पहुँच, परिवर्तन, प्रकटीकरण वा विनाशबाट जोगाउन उचित प्राविधिक र संगठनात्मक उपायहरू लागू गर्छौं।"
+          : "We implement appropriate technical and organisational measures to protect your personal information against unauthorised access, alteration, disclosure, or destruction."}
+      </p>
+
+      <h4>{isNe ? "५. तेस्रो-पक्ष सेवाहरू" : "5. Third-Party Services"}</h4>
+      <p>
+        {isNe
+          ? "हामी हाम्रो वेबसाइट होस्ट गर्न Vercel, र फारम सबमिशन प्रशोधनको लागि Netlify प्रयोग गर्छौं। यी सेवा प्रदायकहरूको आ-आफ्नै गोपनीयता नीतिहरू छन् जुन हामी तपाईंलाई समीक्षा गर्न प्रोत्साहित गर्छौं।"
+          : "We use Vercel to host our website and Netlify for form submission processing. These service providers have their own privacy policies which we encourage you to review."}
+      </p>
+
+      <h4>{isNe ? "६. तपाईंको अधिकार" : "6. Your Rights"}</h4>
+      <p>
+        {isNe
+          ? `तपाईंलाई हामीले राखेको तपाईंको व्यक्तिगत जानकारीमा पहुँच, सुधार, वा मेटाउन अनुरोध गर्ने अधिकार छ। कृपया हामीलाई ${email} मा सम्पर्क गर्नुहोस्।`
+          : `You have the right to request access to, correction of, or deletion of your personal information held by us. Please contact us at ${email}.`}
+      </p>
+
+      <h4>{isNe ? "७. हामीलाई सम्पर्क गर्नुहोस्" : "7. Contact Us"}</h4>
+      <p>
+        {isNe
+          ? `यदि तपाईंसँग यस गोपनीयता नीतिको बारेमा प्रश्नहरू छन् भने, कृपया हामीलाई ${email} मा सम्पर्क गर्नुहोस् वा ${companyAddress} मा पत्र पठाउनुहोस्।`
+          : `If you have questions about this Privacy Policy, please contact us at ${email} or write to us at ${companyAddressEN}.`}
+      </p>
+    </article>
+
+    <hr class="legal-divider" />
+
+    <!-- Terms of Service -->
+    <article class="legal-article">
+      <h3 class="legal-heading">{isNe ? "सेवाका सर्तहरू" : "Terms of Service"}</h3>
+
+      <h4>{isNe ? "१. स्वीकृति" : "1. Acceptance"}</h4>
+      <p>
+        {isNe
+          ? `यो वेबसाइट ${website} प्रयोग गरेर, तपाईं यी सेवाका सर्तहरू स्वीकार गर्नुहुन्छ। यदि तपाईं यी सर्तहरूसँग सहमत हुनुहुन्न भने, कृपया यो साइट प्रयोग नगर्नुहोस्।`
+          : `By accessing this website ${website}, you agree to these Terms of Service. If you do not agree with these terms, please do not use this site.`}
+      </p>
+
+      <h4>{isNe ? "२. बौद्धिक सम्पत्ति" : "2. Intellectual Property"}</h4>
+      <p>
+        {isNe
+          ? `यस वेबसाइटमा रहेका सबै सामग्री — लोगो, पाठ, ग्राफिक्स, र कागजातहरू सहित — ${companyName} को सम्पत्ति हो र नेपालको बौद्धिक सम्पत्ति कानून अन्तर्गत संरक्षित छ।`
+          : `All content on this website — including logos, text, graphics, and documents — is the property of ${companyNameEN} and is protected under Nepali intellectual property law.`}
+      </p>
+
+      <h4>{isNe ? "३. वेबसाइटको प्रयोग" : "3. Use of the Website"}</h4>
+      <p>
+        {isNe
+          ? "तपाईं यो वेबसाइट प्रयोग गर्न सहमत हुनुहुन्छ केवल: (क) कानुनी उद्देश्यका लागि; (ख) अरूको अधिकारको उल्लङ्घन नगर्ने; (ग) हानिकारक कोड, मालवेयर, वा अन्य हानिकारक सामग्री अपलोड नगर्ने।"
+          : "You agree to use this website only for: (a) lawful purposes; (b) without infringing the rights of others; (c) without uploading harmful code, malware, or other damaging content."}
+      </p>
+
+      <h4>{isNe ? "४. बहिष्करण" : "4. Disclaimer"}</h4>
+      <p>
+        {isNe
+          ? "यो वेबसाइट \"जस्तो छ\" आधारमा प्रदान गरिएको छ। हामी वेबसाइटको शुद्धता, पूर्णता वा उपलब्धताको कुनै वारेन्टी दिँदैनौं। हामी कुनै पनि समयमा सूचना बिना सामग्री परिवर्तन गर्ने अधिकार सुरक्षित राख्छौं।"
+          : "This website is provided on an \"as is\" basis. We make no warranty as to the accuracy, completeness, or availability of the website. We reserve the right to modify content at any time without notice."}
+      </p>
+
+      <h4>{isNe ? "५. सम्पर्क" : "5. Contact"}</h4>
+      <p>
+        {isNe
+          ? `यी सर्तहरूको बारेमा प्रश्नहरूको लागि, कृपया हामीलाई ${email} मा सम्पर्क गर्नुहोस्।`
+          : `For questions about these terms, please contact us at ${email}.`}
+      </p>
+    </article>
+
+    <hr class="legal-divider" />
+
+    <!-- Cookie Policy -->
+    <article class="legal-article">
+      <h3 class="legal-heading">{isNe ? "कुकी नीति" : "Cookie Policy"}</h3>
+
+      <h4>{isNe ? "१. कुकीहरू के हुन्?" : "1. What Are Cookies?"}</h4>
+      <p>
+        {isNe
+          ? "कुकीहरू साना पाठ फाइलहरू हुन् जुन तपाईंले भ्रमण गर्नुभएको वेबसाइटले तपाईंको ब्राउजरमा भण्डार गर्दछ। तिनीहरूले वेबसाइटलाई तपाईंको प्राथमिकताहरू सम्झन र तपाईंको ब्राउजिङ अनुभव सुधार गर्न मद्दत गर्छन्।"
+          : "Cookies are small text files that a website stores on your browser when you visit. They help the website remember your preferences and improve your browsing experience."}
+      </p>
+
+      <h4>{isNe ? "२. हामी कुन कुकीहरू प्रयोग गर्छौं" : "2. Cookies We Use"}</h4>
+      <p>
+        {isNe
+          ? "हामी न्यूनतम कुकीहरू प्रयोग गर्छौं। हाम्रो वेबसाइटमा कुनै ट्र्याकिङ, विज्ञापन, वा तेस्रो-पक्ष मार्केटिङ कुकीहरू छैनन्। हामी Vercel Web Analytics प्रयोग गर्छौं, जसले गोपनीयता-अनुकूल, कुकी-रहित तरिकामा अज्ञात उपयोग डेटा सङ्कलन गर्दछ।"
+          : "We use minimal cookies. Our website has no tracking, advertising, or third-party marketing cookies. We use Vercel Web Analytics, which collects anonymous usage data in a privacy-friendly, cookie-free manner."}
+      </p>
+
+      <h4>{isNe ? "३. तपाईंको नियन्त्रण" : "3. Your Control"}</h4>
+      <p>
+        {isNe
+          ? "तपाईं आफ्नो ब्राउजर सेटिङ्हरू मार्फत कुकीहरू नियन्त्रण र मेटाउन सक्नुहुन्छ। कृपया आफ्नो ब्राउजरको मद्दत खण्ड हेर्नुहोस्। कुकीहरू असक्षम गर्दा हाम्रो वेबसाइटको निश्चित सुविधाहरूलाई असर गर्न सक्छ।"
+          : "You can control and delete cookies through your browser settings. Please see your browser's help section. Disabling cookies may affect certain features of our website."}
+      </p>
+
+      <h4>{isNe ? "४. अद्यावधिकहरू" : "4. Updates"}</h4>
+      <p>
+        {isNe
+          ? "हामी यो कुकी नीति कहिलेकाहीं अद्यावधिक गर्न सक्छौं। कुनै पनि परिवर्तनहरू यस पृष्ठमा पोस्ट हुनेछन्।"
+          : "We may update this Cookie Policy from time to time. Any changes will be posted on this page."}
+      </p>
+    </article>
+  </div>
+</section>
+
+<style>
+  .legal-section {
+    scroll-margin-top: 5rem;
+  }
+
+  .legal-article {
+    max-width: 800px;
+  }
+
+  .legal-heading {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-forest-deep);
+    margin-bottom: 2rem;
+  }
+
+  .lang-ne .legal-heading {
+    font-family: var(--font-deva-heading);
+  }
+
+  .legal-article h4 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--color-forest-deep);
+    margin-bottom: 0.75rem;
+    margin-top: 1.75rem;
+  }
+
+  .legal-article h4:first-of-type {
+    margin-top: 0;
+  }
+
+  .legal-article p {
+    font-size: 0.9375rem;
+    color: var(--color-slate-mid);
+    line-height: 1.7;
+    max-width: 720px;
+  }
+
+  .legal-article p + h4 {
+    margin-top: 2rem;
+  }
+
+  .legal-divider {
+    border: none;
+    border-top: 1px solid var(--color-slate-light);
+    margin: 3rem 0;
+  }
+</style>

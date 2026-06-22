@@ -1,0 +1,106 @@
+---
+const { lang = "ne" } = Astro.props;
+const isNe = lang === "ne";
+
+const heading = isNe ? "इन्जिनियरिङ र निर्माण" : "Engineering & Construction";
+const motto = isNe
+  ? "एउटै फर्म। एउटै आदेश।"
+  : "One Firm. One Mandate.";
+const quote = isNe
+  ? "हामी पहिलो सर्वेक्षणदेखि अन्तिम हस्तान्तरणसम्म एउटै जवाफदेही छानामुनि काम गर्छौं — किनभने विभाजित जिम्मेवारी नै गुणस्तर हराउने ठाउँ हो।"
+  : "We carry the work from first survey to final handover under a single accountable roof — because divided responsibility is where quality is lost.";
+const cta = isNe ? "परियोजना छलफल गर्नुहोस्" : "Discuss a Project";
+
+const items = [
+  {
+    title: isNe ? "सडक र पुल" : "Roads & Bridges",
+    desc: isNe
+      ? "कर्णाली प्रदेशको कठिन भूभागमा टिकाउ सम्पर्कको लागि पङ्क्तिबद्ध सर्वेक्षण, संरचनात्मक डिजाइन, र पूर्ण निर्माण पर्यवेक्षण — ग्रामीण मार्गदेखि भार-मूल्याङ्कन गरिएका पुलसम्म।"
+      : "Alignment surveys, structural design, and full construction supervision for durable connectivity across Karnali Province's demanding terrain — rural routes through to load-rated bridges.",
+  },
+  {
+    title: isNe ? "खानेपानी आपूर्ति प्रणाली" : "Water Supply Systems",
+    desc: isNe
+      ? "स्रोत जलवैज्ञानिक मूल्याङ्कन, वितरण नेटवर्क ईन्जिनियरिङ, र सामुदायिक गुरुत्व योजना र नगरपालिका वितरणको लागि टर्नकी कार्यान्वयन — इन्टेकदेखि ट्यापसम्म।"
+      : "Source hydrological assessment, distribution network engineering, and turnkey execution for community gravity schemes and municipal reticulation — from intake to tap.",
+  },
+  {
+    title: isNe ? "संरचनात्मक र सिभिल कार्य" : "Structural & Civil Works",
+    desc: isNe
+      ? "जगदेखि फिनिससम्म — रिटेनिङ संरचना, संस्थागत भवन, र सामान्य सिभिल कार्य निर्माण कार्यक्रमको हरेक चरणमा आन्तरिक गुणस्तर नियन्त्रणका साथ कार्यान्वयन।"
+      : "Foundation to finish — retaining structures, institutional buildings, and general civil works executed with in-house quality control at every stage of the build programme.",
+  },
+];
+---
+
+<section class="section engineering-section animate-section" id="engineering">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">{heading}</span>
+      <h2 class="section-heading">{motto}</h2>
+      <hr class="section-rule" />
+      <blockquote class="engineering-quote">&ldquo;{quote}&rdquo;</blockquote>
+      <a href={`/${lang}/contact`} class="btn btn-outline-dark">{cta}</a>
+    </div>
+    <div class="grid-3 animate-section-delay-1">
+      {items.map((item) => (
+        <div class="card engineering-card">
+          <h3 class="engineering-title">{item.title}</h3>
+          <p class="engineering-desc">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+    <div class="engineering-footer-note">
+      <hr class="section-rule" />
+      <p class="engineering-footnote">
+        {isNe
+          ? "हातमा रहेको सम्झौता होइन — आगामी दशकहरूको लागि ईन्जिनियर गर्छौं।"
+          : "We engineer for the decades ahead — not the contract in hand."}
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .engineering-section {
+    background-color: var(--color-white);
+  }
+  .engineering-quote {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--color-forest-deep);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 700px;
+  }
+  .lang-ne .engineering-quote {
+    font-family: var(--font-deva-heading);
+  }
+  .engineering-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .engineering-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+  .engineering-desc {
+    font-size: 0.9rem;
+    color: var(--color-slate-mid);
+    line-height: 1.7;
+  }
+  .engineering-footer-note {
+    margin-top: 3rem;
+  }
+  .engineering-footnote {
+    font-family: var(--font-heading);
+    font-size: 0.9375rem;
+    color: var(--color-slate-mid);
+    font-style: italic;
+  }
+  .lang-ne .engineering-footnote {
+    font-family: var(--font-deva-heading);
+  }
+</style>

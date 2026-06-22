@@ -1,0 +1,89 @@
+---
+const { lang = "ne" } = Astro.props;
+const isNe = lang === "ne";
+
+const heading = isNe ? "रणनीतिक परामर्श" : "Strategic Consultancy";
+const tagline = isNe ? "निर्माण अघिको खाका" : "The Blueprint Before the Build";
+const body = isNe
+  ? "प्रत्येक राम्रो लगानी राम्रो जानकारीबाट सुरु हुन्छ। हामी सरकार, ऋणदाता र दाताहरूलाई एक मेसिन पनि जमिन भन्दा अघि आवश्यक पर्ने प्राविधिक र वित्तीय दस्तावेज उत्पादन गर्छौं — निर्णयकर्ताहरूलाई आत्मविश्वासका साथ प्रतिबद्ध हुन आवश्यक स्पष्टता दिन्छौं।"
+  : "Every sound investment begins with sound information. We produce the technical and financial documentation that governments, lenders, and donors require before a single machine breaks ground — giving decision-makers the clarity to commit with confidence.";
+const cta = isNe ? "अध्ययन आदेश दिनुहोस्" : "Commission a Study";
+const items = [
+  {
+    num: "01",
+    title: isNe ? "विस्तृत परियोजना प्रतिवेदन (DPR)" : "Detailed Project Reports (DPR)",
+    desc: isNe
+      ? "स्थलाकृतिक सर्वेक्षण, पूर्ण ईन्जिनियरिङ डिजाइन, लागत अनुमान, वातावरणीय र सामाजिक मूल्याङ्कन, र कार्यान्वयन तालिका — सरकारी र संस्थागत पेशकशको लागि स्वीकृति-तयार मापदण्डमा संकलित।"
+      : "Topographic survey, full engineering design, cost estimation, environmental and social assessment, and implementation scheduling — compiled to approval-ready standards for government and institutional submission.",
+  },
+  {
+    num: "02",
+    title: isNe ? "सम्भाव्यता र मूल्याङ्कन अध्ययन" : "Feasibility & Valuation Studies",
+    desc: isNe
+      ? "प्राविधिक सम्भाव्यता, वित्तीय प्रतिफल, र परियोजना जोखिमको स्वतन्त्र, डेटा-आधारित मूल्याङ्कन — जमिन भाँचिनु अघि प्रत्येक सरोकारवालाको रक्षा गर्ने परिश्रमी निरीक्षण तह।"
+      : "Independent, data-led assessment of technical viability, financial return, and project risk — the due diligence layer that protects every stakeholder before ground is broken.",
+  },
+];
+---
+
+<section class="section animate-section" id="consultancy">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">{heading}</span>
+      <h2 class="section-heading">{tagline}</h2>
+      <hr class="section-rule" />
+      <p class="section-subheading">{body}</p>
+      <a href={`/${lang}/contact`} class="btn btn-outline-dark">{cta}</a>
+    </div>
+    <div class="consultancy-items grid-2">
+      {items.map((item) => (
+        <div class="card consultancy-card">
+          <span class="consultancy-num">{item.num}</span>
+          <h3 class="consultancy-title">{item.title}</h3>
+          <p class="consultancy-desc">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-header {
+    margin-bottom: 3rem;
+  }
+  .section-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  .consultancy-card {
+    position: relative;
+    padding-top: 3rem;
+  }
+  .consultancy-num {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-slate-light);
+    line-height: 1;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .lang-ne .consultancy-num {
+    font-family: var(--font-deva-heading);
+  }
+  .consultancy-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  .consultancy-desc {
+    font-size: 0.9375rem;
+    color: var(--color-slate-mid);
+    line-height: 1.7;
+  }
+</style>

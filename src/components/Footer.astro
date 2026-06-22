@@ -1,0 +1,176 @@
+---
+const { lang = "ne" } = Astro.props;
+const prefix = `/${lang}`;
+
+const content = lang === "ne" ? {
+  tagline: "नेपालको भविष्यलाई शक्ति दिँदै, यसको सम्पदा जोगाउँदै।",
+  services: "सेवाहरू",
+  consultancy: "रणनीतिक परामर्श",
+  engineering: "इन्जिनियरिङ र निर्माण",
+  energy: "नवीकरणीय उर्जा",
+  commitment: "ग्राहक प्रतिबद्धता",
+  contact: "सम्पर्क",
+  office: "कार्यालय",
+  address: "वीरेन्द्रनगर, सुर्खेत<br/>कर्णाली प्रदेश, नेपाल",
+  email: "suryakiranenergy3@gmail.com",
+  reg: "प्रा.लि. · कर्णाली प्रदेश",
+  submitTender: "टेन्डर पेश गर्नुहोस्",
+  capability: "क्षमता विवरण",
+  rights: "© २०२५ सूर्य किरण रिन्युएबल एनर्जी प्रा.लि. सर्वाधिकार सुरक्षित।",
+  architects: "पूर्वाधारका वास्तुकार",
+} : {
+  tagline: "Planning, designing, building, and maintaining the infrastructure and energy systems that power Nepal's future.",
+  services: "Services",
+  consultancy: "Strategic Consultancy",
+  engineering: "Engineering & Construction",
+  energy: "Renewable Energy",
+  commitment: "Client Commitment",
+  contact: "Contact",
+  office: "Office",
+  address: "Birendranagar, Surkhet<br/>Karnali Province, Nepal",
+  email: "suryakiranenergy3@gmail.com",
+  reg: "Pvt. Ltd. · Karnali Province",
+  submitTender: "Submit a Tender Enquiry",
+  capability: "Capability Statement",
+  rights: "© 2025 Surya Kiran Renewable Energy Pvt. Ltd. All rights reserved.",
+  architects: "Architects of Infrastructure",
+};
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-name">SURYA KIRAN</span>
+        <span class="logo-sub">Renewable Energy</span>
+        <p class="footer-tagline" set:html={content.tagline}></p>
+        <span class="footer-architects">{content.architects}</span>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">{content.services}</h4>
+        <ul class="footer-links">
+          <li><a href={`${prefix}/services#consultancy`}>{content.consultancy}</a></li>
+          <li><a href={`${prefix}/services#engineering`}>{content.engineering}</a></li>
+          <li><a href={`${prefix}/services#energy`}>{content.energy}</a></li>
+          <li><a href={`${prefix}/commitment`}>{content.commitment}</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">{content.contact}</h4>
+        <ul class="footer-links footer-contact">
+          <li><strong>{content.office}</strong><br/><span set:html={content.address}></span></li>
+          <li><a href={`mailto:${content.email}`}>{content.email}</a></li>
+          <li class="footer-reg">{content.reg}</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">&nbsp;</h4>
+        <ul class="footer-links">
+          <li><a href={`${prefix}/contact`} class="btn btn-outline-dark">{content.submitTender}</a></li>
+          <li style="margin-top:0.75rem"><a href={`${prefix}/contact`} class="footer-link-muted">{content.capability}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>{content.rights}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-forest-deep);
+    color: var(--color-ivory);
+    padding: 4rem 0 2rem;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .footer-brand .logo-name {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-white);
+  }
+  .footer-brand .logo-sub {
+    font-size: 0.6875rem;
+    color: var(--color-slate-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .footer-tagline {
+    font-size: 0.875rem;
+    color: var(--color-slate-light);
+    line-height: 1.6;
+    max-width: 300px;
+  }
+  .footer-architects {
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
+    color: var(--color-gold);
+    font-style: italic;
+  }
+  .footer-heading {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-white);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.25rem;
+  }
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .footer-links a {
+    font-size: 0.875rem;
+    color: var(--color-slate-light);
+    text-decoration: none;
+  }
+  .footer-links a:hover {
+    color: var(--color-gold);
+  }
+  .footer-contact li {
+    font-size: 0.875rem;
+    color: var(--color-slate-light);
+    line-height: 1.5;
+  }
+  .footer-contact a {
+    color: var(--color-gold);
+  }
+  .footer-reg {
+    font-size: 0.75rem;
+    color: var(--color-slate-mid);
+  }
+  .footer-link-muted {
+    font-size: 0.8125rem;
+    color: var(--color-slate-mid);
+  }
+  .footer-bottom {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+  }
+  .footer-bottom p {
+    font-size: 0.75rem;
+    color: var(--color-slate-mid);
+  }
+
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

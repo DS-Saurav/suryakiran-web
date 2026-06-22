@@ -1,0 +1,70 @@
+---
+const { lang = "ne" } = Astro.props;
+const isNe = lang === "ne";
+
+const heading = isNe ? "नवीकरणीय ऊर्जा समाधान" : "Renewable Energy Solutions";
+const tagline = isNe ? "लामो क्षितिजको लागि डिजाइन गरिएको" : "Designed for the Long Horizon";
+const body = isNe
+  ? "सौर्य ऊर्जा त्यति मात्र राम्रो हुन्छ जति यसको पछाडिको ईन्जिनियरिङ। हामी प्रणालीहरूलाई वास्तविक लोडमा मिलाउँछौं, लागतभन्दा दीर्घायुलाई प्राथमिकता दिन्छौं, र कमिसनिङ पछि पनि सम्पर्कमा रहन्छौं — किनभने तेस्रो वर्षमा असफल हुने प्रणाली साँच्चै बनाइएको थिएन।"
+  : "Solar energy is only as good as the engineering behind it. We size systems to genuine load, specify for longevity over cost, and remain on call long after commissioning — because a system that fails in year three was never truly built.";
+const cta = isNe ? "ऊर्जा समाधान अन्वेषण गर्नुहोस्" : "Explore Energy Solutions";
+
+const items = [
+  {
+    title: isNe ? "सौर्य छत प्रणाली" : "Solar Rooftop Systems",
+    desc: isNe
+      ? "आवासीय, संस्थागत र औद्योगिक परिसरको लागि अनुकूल लोड-विश्लेषण र प्रणाली डिजाइन। प्रत्येक स्थापना ईन्जिनियर गरिएको छ, टेम्प्लेट गरिएको छैन — छाया विश्लेषणदेखि इन्भर्टर चयन र वारेन्टी-समर्थित कमिसनिङसम्म।"
+      : "Custom load-analysis and system design for residential, institutional, and industrial premises. Every installation is engineered, not templated — from shading analysis through inverter selection to warranty-backed commissioning.",
+  },
+  {
+    title: isNe ? "सौर्य पानी पम्पिङ" : "Solar Water Pumping",
+    desc: isNe
+      ? "पहाडी जलविज्ञानको लागि ईन्जिनियर गरिएका भेरिएबल-फ्रिक्वेन्सी ड्राइभ र प्रत्यक्ष-युग्मित पम्पिङ प्रणाली — कृषि र दुर्गम समुदायहरूको लागि भरपर्दो, कम मर्मत भएको पानी पहुँच।"
+      : "Variable-frequency drive and direct-coupled pumping systems engineered for mountain hydrology — reliable, low-maintenance water access for agriculture and remote communities.",
+  },
+  {
+    title: isNe ? "प्रणाली निर्माण" : "System Manufacturing",
+    desc: isNe
+      ? "ग्याल्भेनाइज्ड माउन्टिङ संरचना र प्रणाली घटकहरूको आन्तरिक निर्माण। स्पेसिफिकेशन अनुसार निर्मित, मौसम-परीक्षण, र स्थापनाको लागि तयार — प्रत्येक परियोजनाबाट आपूर्ति श्रृंखला अनिश्चितता हटाउँदै।"
+      : "In-house fabrication of galvanised mounting structures and balance-of-system components. Built to specification, climate-tested, and ready to install — removing the supply-chain uncertainty from every project.",
+  },
+];
+---
+
+<section class="section animate-section" id="energy">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">{heading}</span>
+      <h2 class="section-heading">{tagline}</h2>
+      <hr class="section-rule" />
+      <p class="section-subheading">{body}</p>
+      <a href={`/${lang}/contact`} class="btn btn-outline-dark">{cta}</a>
+    </div>
+    <div class="grid-3">
+      {items.map((item) => (
+        <div class="card energy-card">
+          <h3 class="energy-title">{item.title}</h3>
+          <p class="energy-desc">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .energy-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    border-top: 3px solid var(--color-forest-deep);
+  }
+  .energy-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+  .energy-desc {
+    font-size: 0.9rem;
+    color: var(--color-slate-mid);
+    line-height: 1.7;
+  }
+</style>

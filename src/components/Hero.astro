@@ -1,0 +1,120 @@
+---
+const { lang = "ne" } = Astro.props;
+const prefix = `/${lang}`;
+
+const isNe = lang === "ne";
+const headline = isNe
+  ? "नेपालको भविष्यलाई शक्ति दिँदै, यसको सम्पदा जोगाउँदै।"
+  : "Natural Energy, Heavy Engineering";
+const subheadline = isNe
+  ? "हामी नेपालको वृद्धिलाई आधार बनाउने सिभिल वर्क्स, ऊर्जा प्रणाली, र ईन्जिनियर गरिएका समाधानहरूको योजना, डिजाइन, निर्माण र मर्मत सम्भार गर्छौं — पहिलो सर्वेक्षणदेखि अन्तिम कमिसनिङ र त्यसपछि पनि।"
+  : "We plan, design, build, and maintain the civil works, energy systems, and engineered solutions that underpin Nepal's growth — carried from first survey to final commissioning, and beyond.";
+const ctaPrimary = isNe ? "परामर्शको लागि अनुरोध" : "Request a Consultation";
+const ctaSecondary = isNe ? "क्षमता विवरण हेर्नुहोस्" : "View Capability Statement";
+---
+
+<section class="hero animate-section">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <h1 class="hero-headline">{headline}</h1>
+    <p class="hero-sub">{subheadline}</p>
+    <div class="hero-actions">
+      <a href={`${prefix}/contact`} class="btn btn-primary btn-lg">{ctaPrimary}</a>
+      <a href={`${prefix}/services`} class="btn btn-outline btn-lg">{ctaSecondary}</a>
+    </div>
+    <div class="hero-scroll">
+      <span>{isNe ? "तल स्क्रोल गर्नुहोस्" : "Scroll"}</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    background-color: var(--color-forest-deep);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231B3A2D'/%3E%3Cpath d='M0 60 L100 30 L100 40 L0 70 Z' fill='%232E5A44' opacity='0.3'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(27, 58, 45, 0.92) 0%,
+      rgba(27, 58, 45, 0.7) 50%,
+      rgba(27, 58, 45, 0.4) 100%
+    );
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    padding: 4rem 0;
+  }
+  .hero-headline {
+    font-family: var(--font-heading);
+    font-size: 3.75rem;
+    font-weight: 700;
+    color: var(--color-white);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .lang-ne .hero-headline {
+    font-family: var(--font-deva-heading);
+    font-size: 3rem;
+  }
+  .hero-sub {
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 640px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn-lg {
+    padding: 1rem 2.25rem;
+    font-size: 1rem;
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 70vh;
+    }
+    .hero-headline {
+      font-size: 2.25rem;
+    }
+    .lang-ne .hero-headline {
+      font-size: 2rem;
+    }
+    .hero-sub {
+      font-size: 1rem;
+    }
+    .hero-scroll {
+      display: none;
+    }
+  }
+</style>

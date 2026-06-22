@@ -1,0 +1,388 @@
+---
+const { lang = "ne" } = Astro.props;
+const isNe = lang === "ne";
+
+// ── Metrics / Stats ──
+const metrics = isNe
+  ? [
+    { value: "४७.३", unit: "MW", label: "स्थापित क्षमता" },
+    { value: "२५,०००+", unit: "", label: "टन CO₂ वार्षिक बचत" },
+    { value: "२००+", unit: "", label: "परियोजनाहरू डेलिभर" },
+    { value: "५०+", unit: "", label: "प्रत्यक्ष रोजगारी सिर्जना" },
+  ]
+  : [
+    { value: "47.3", unit: "MW", label: "Installed Capacity" },
+    { value: "25,000+", unit: "", label: "Tonnes CO₂ Saved Annually" },
+    { value: "200+", unit: "", label: "Projects Delivered" },
+    { value: "50+", unit: "", label: "Direct Jobs Created" },
+  ];
+
+// ── SDG Alignment ──
+const sdgs = [
+  {
+    num: "7",
+    title: isNe ? "सस्तो र स्वच्छ ऊर्जा" : "Affordable & Clean Energy",
+    desc: isNe
+      ? "हाम्रो मुख्य कार्य — सौर्य, माइक्रो-हाइड्रो, र हाइब्रिड प्रणालीहरू मार्फत नेपाली घरपरिवार र उद्योगहरूमा स्वच्छ, किफायती ऊर्जा पुर्याउने।"
+      : "Our core mandate — delivering clean, affordable energy to Nepali households and industry through solar, micro-hydro, and hybrid systems.",
+    color: "#FDC30B",
+  },
+  {
+    num: "9",
+    title: isNe ? "उद्योग, नवाचार र पूर्वाधार" : "Industry, Innovation & Infrastructure",
+    desc: isNe
+      ? "हामी कर्णालीको कठिन भूभागको लागि अनुकूलित टिकाउ पूर्वाधार — सडक, पुल, पानी प्रणाली — डिजाइन र निर्माण गर्छौं।"
+      : "We design and build durable infrastructure — roads, bridges, water systems — adapted for Karnali's challenging terrain.",
+    color: "#FD6925",
+  },
+  {
+    num: "11",
+    title: isNe ? "दिगो शहर र समुदाय" : "Sustainable Cities & Communities",
+    desc: isNe
+      ? "दुर्गम क्षेत्रहरूमा भरपर्दो ऊर्जा र पूर्वाधार पुर्याएर हामी दिगो, लचिलो समुदायहरू निर्माणमा योगदान पुर्याउँछौं।"
+      : "By bringing reliable energy and infrastructure to remote areas, we contribute to building sustainable, resilient communities.",
+    color: "#F29A2E",
+  },
+  {
+    num: "13",
+    title: isNe ? "जलवायु कार्य" : "Climate Action",
+    desc: isNe
+      ? "प्रत्येक मेगावाट नवीकरणीय ऊर्जा स्थापना नेपालको SDG ७ र १३ प्रतिबद्धताहरूमा प्रत्यक्ष योगदान हो।"
+      : "Every megawatt of renewable energy installed is a direct contribution to Nepal's SDG 7 and 13 commitments.",
+    color: "#3F7E44",
+  },
+  {
+    num: "8",
+    title: isNe ? "राम्रो काम र आर्थिक वृद्धि" : "Decent Work & Economic Growth",
+    desc: isNe
+      ? "हामी स्थानीय प्राविधिक र ईन्जिनियरहरूलाई रोजगार, तालिम र क्यारियर वृद्धि प्रदान गर्छौं, कर्णाली प्रदेशभित्र सीप र क्षमता निर्माण गर्दै।"
+      : "We employ, train, and develop local technicians and engineers, building skill and capacity within Karnali Province.",
+    color: "#A21942",
+  },
+];
+
+// ── Community Stories ──
+const stories = isNe
+  ? [
+    {
+      title: "दुर्गम गाउँमा पुनर्निर्माण",
+      desc: "जाजरकोट जिल्लाको भूकम्पपछिको पुनर्निर्माण — हामीले ३५ वटा सामुदायिक भवनको संरचनात्मक पुनर्स्थापना र नवीकरणीय ऊर्जा प्रणाली स्थापना गर्यौं।",
+      region: "जाजरकोट",
+    },
+    {
+      title: "विद्यालय सौर्यीकरण कार्यक्रम",
+      desc: "कर्णाली प्रदेशभर २० भन्दा बढी सामुदायिक विद्यालयहरूमा सौर्य छत प्रणाली स्थापना — विद्यार्थीहरूको लागि विश्वसनीय प्रकाश र सिकाइ वातावरण।",
+      region: "सुर्खेत, दैलेख, सल्यान",
+    },
+    {
+      title: "कृषि सौर्य पम्पिङ",
+      desc: "दुर्गम पहाडी समुदायहरूमा १० वटा सौर्य पानी पम्पिङ प्रणाली — हातले बोक्ने दूरी घटाउँदै र सिँचाइमा पहुँच बढाउँदै।",
+      region: "कालिकोट, मुगु",
+    },
+  ]
+  : [
+    {
+      title: "Rebuilding in Remote Villages",
+      desc: "Post-earthquake reconstruction in Jajarkot district — we handled structural restoration and renewable energy systems installation for 35 community buildings.",
+      region: "Jajarkot",
+    },
+    {
+      title: "School Solarisation Programme",
+      desc: "Solar rooftop systems installed at over 20 community schools across Karnali Province — providing reliable lighting and learning environments for students.",
+      region: "Surkhet, Dailekh, Salyan",
+    },
+    {
+      title: "Agricultural Solar Pumping",
+      desc: "Ten solar water pumping systems in remote hill communities — reducing walking distances and expanding irrigation access.",
+      region: "Kalikot, Mugu",
+    },
+  ];
+---
+
+<section class="section impact-section animate-section" id="impact">
+  <!-- Metrics Dashboard -->
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">{isNe ? "हाम्रो प्रभाव" : "Our Impact"}</span>
+      <h2 class="section-heading">{isNe ? "मापन गरिएको, प्रमाणित" : "Measured, Verified"}</h2>
+      <hr class="section-rule" />
+      <p class="section-subheading">
+        {isNe
+          ? "हामी डेटा बोल्छौं किनभने प्रभाव — जस्तै पूर्वाधार — ठोस हुनुपर्छ। यी संख्याहरूले जमिनमा वर्षौंको कामको प्रतिनिधित्व गर्छन्, हरेक मेगावाट र हरेक टन CO₂ सँग परियोजना फाइलहरू समर्थित।"
+          : "We let data speak because impact — like infrastructure — must be tangible. These numbers represent years of work on the ground, each megawatt and each tonne of CO₂ backed by project files."}
+      </p>
+    </div>
+    <div class="metrics-grid">
+      {metrics.map((m) => (
+        <div class="metric-card">
+          <span class="metric-value">{m.value}<span class="metric-unit">{m.unit}</span></span>
+          <span class="metric-label">{m.label}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- SDG Alignment -->
+  <div class="sdg-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">SDGs</span>
+        <h2 class="section-heading">{isNe ? "दिगो विकास लक्ष्यहरूसँग पङ्क्तिबद्ध" : "Aligned with the Sustainable Development Goals"}</h2>
+        <hr class="section-rule" />
+        <p class="section-subheading">
+          {isNe
+            ? "हाम्रो कामले धेरै SDG हरूमा प्रत्यक्ष योगदान पुर्याउँछ, स्वच्छ ऊर्जा, टिकाउ पूर्वाधार, र जलवायु लचिलोपनमा नेपालको प्रतिबद्धतालाई समर्थन गर्दै।"
+            : "Our work directly contributes to several SDGs, supporting Nepal's commitment to clean energy, sustainable infrastructure, and climate resilience."}
+        </p>
+      </div>
+      <div class="sdg-grid">
+        {sdgs.map((sdg) => (
+          <div class="sdg-card">
+            <div class="sdg-num-wrap" style={`background-color: ${sdg.color}`}>
+              <span class="sdg-num">{sdg.num}</span>
+            </div>
+            <div class="sdg-content">
+              <h3 class="sdg-title">{sdg.title}</h3>
+              <p class="sdg-desc">{sdg.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Community Stories -->
+  <div class="container">
+    <div class="stories-section">
+      <div class="section-header">
+        <span class="section-tag">{isNe ? "समुदाय" : "Community"}</span>
+        <h2 class="section-heading">{isNe ? "हामी सेवा गर्ने समुदायहरू" : "The Communities We Serve"}</h2>
+        <hr class="section-rule" />
+        <p class="section-subheading">
+          {isNe
+            ? "प्रत्येक परियोजनाको पछाडि एउटा कथा छ — एउटा गाउँ जहाँ पहिलो पटक बिजुली पुग्यो, एउटा विद्यालय जहाँ अब विद्यार्थीहरू अँध्यारो भएपछि पनि पढ्न सक्छन्, एउटा समुदाय जसको जीविकोपार्जन सुरक्षित भयो।"
+            : "Behind every project is a story — a village that received electricity for the first time, a school where students can now study after dark, a community whose livelihood was secured."}
+        </p>
+      </div>
+      <div class="stories-grid">
+        {stories.map((story) => (
+          <div class="story-card card">
+            <span class="story-region">{story.region}</span>
+            <h3 class="story-title">{story.title}</h3>
+            <p class="story-desc">{story.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Sustainability Report -->
+  <div class="report-section">
+    <div class="container">
+      <div class="report-card">
+        <div class="report-content">
+          <span class="section-tag">{isNe ? "प्रतिवेदन" : "Report"}</span>
+          <h2 class="report-heading">{isNe ? "दिगोपन प्रतिवेदन" : "Sustainability Report"}</h2>
+          <hr class="section-rule" />
+          <p>
+            {isNe
+              ? "हाम्रो वार्षिक दिगोपन प्रतिवेदनले वातावरणीय, सामाजिक र शासन (ESG) मेट्रिक्स, परियोजना-स्तरीय प्रभाव डेटा, र आगामी वर्षको लागि हाम्रो रोडम्यापको विस्तृत दस्तावेजीकरण प्रदान गर्दछ।"
+              : "Our annual Sustainability Report provides comprehensive documentation of environmental, social, and governance (ESG) metrics, project-level impact data, and our roadmap for the year ahead."}
+          </p>
+          <a href={`/${lang}/contact`} class="btn btn-primary">
+            {isNe ? "प्रतिवेदनको लागि अनुरोध गर्नुहोस्" : "Request the Report"}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .impact-section {
+    scroll-margin-top: 5rem;
+  }
+
+  /* ── Metrics ── */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-gutter);
+    margin-bottom: 4rem;
+  }
+  .metric-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-card);
+  }
+  .metric-value {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-forest-deep);
+    line-height: 1;
+  }
+  .lang-ne .metric-value {
+    font-family: var(--font-deva-heading);
+  }
+  .metric-unit {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--color-slate-mid);
+    margin-left: 0.125rem;
+  }
+  .metric-label {
+    font-size: 0.8125rem;
+    color: var(--color-slate-mid);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 768px) {
+    .metrics-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .metric-value {
+      font-size: 2.25rem;
+    }
+  }
+
+  /* ── SDG ── */
+  .sdg-section {
+    background-color: var(--color-white);
+    padding: 4rem 0;
+    margin-bottom: 4rem;
+  }
+  .sdg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-gutter);
+  }
+  .sdg-card {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .sdg-num-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .sdg-num {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-white);
+  }
+  .lang-ne .sdg-num {
+    font-family: var(--font-deva-heading);
+  }
+  .sdg-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+  .sdg-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-forest-deep);
+  }
+  .sdg-desc {
+    font-size: 0.875rem;
+    color: var(--color-slate-mid);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .sdg-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── Stories ── */
+  .stories-section {
+    margin-bottom: 4rem;
+  }
+  .stories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-gutter);
+  }
+  .story-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .story-region {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .story-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-forest-deep);
+  }
+  .story-desc {
+    font-size: 0.9rem;
+    color: var(--color-slate-mid);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 768px) {
+    .stories-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── Report ── */
+  .report-section {
+    margin-bottom: 2rem;
+  }
+  .report-card {
+    padding: 3rem;
+    background-color: var(--color-forest-deep);
+    color: var(--color-white);
+  }
+  .report-content {
+    max-width: 600px;
+  }
+  .report-content .section-tag {
+    color: var(--color-gold);
+  }
+  .report-heading {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: 1rem;
+  }
+  .lang-ne .report-heading {
+    font-family: var(--font-deva-heading);
+  }
+  .report-content .section-rule {
+    background-color: rgba(255,255,255,0.2);
+  }
+  .report-content p {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .report-card {
+      padding: 2rem;
+    }
+  }
+</style>
