@@ -8,6 +8,32 @@ const sub = isNe ? "सरकारी निकाय, विकास सा�
 const benefits = isNe
   ? ["सरकार-तयार प्रक्रिया", "स्थानीय कर्णाली डेलिभरी", "सर्वेक्षण-देखि-हस्तान्तरण जवाफदेहिता"]
   : ["Government-ready process", "Local Karnali delivery", "Survey-to-handover accountability"];
+
+const projectTypesNE = [
+  { value: "", label: "परियोजना प्रकार चयन गर्नुहोस्" },
+  { value: "solar-pv", label: "सौर्य PV (उपयोगिता-स्तर / छत / अफ-ग्रिड)" },
+  { value: "micro-hydro", label: "माइक्रो-हाइड्रो" },
+  { value: "hybrid", label: "हाइब्रिड प्रणाली" },
+  { value: "roads-bridges", label: "सडक र पुल" },
+  { value: "water-supply", label: "खानेपानी आपूर्ति" },
+  { value: "civil-works", label: "संरचनात्मक र सिभिल कार्य" },
+  { value: "consultancy", label: "परामर्श / सम्भाव्यता अध्ययन" },
+  { value: "other", label: "अन्य" },
+];
+
+const projectTypesEN = [
+  { value: "", label: "Select a project type" },
+  { value: "solar-pv", label: "Solar PV (Utility-scale / Rooftop / Off-grid)" },
+  { value: "micro-hydro", label: "Micro-Hydro" },
+  { value: "hybrid", label: "Hybrid Systems" },
+  { value: "roads-bridges", label: "Roads & Bridges" },
+  { value: "water-supply", label: "Water Supply Systems" },
+  { value: "civil-works", label: "Structural & Civil Works" },
+  { value: "consultancy", label: "Consultancy / Feasibility Study" },
+  { value: "other", label: "Other" },
+];
+
+const projectTypes = isNe ? projectTypesNE : projectTypesEN;
 ---
 
 <section class="section contact-section animate-section" id="contact">
@@ -56,22 +82,42 @@ const benefits = isNe
       <div class="contact-form-wrap">
         <form class="contact-form" netlify>
           <input type="hidden" name="lang" value={lang} />
-          <div class="form-group">
-            <label for="org">{isNe ? "संस्था / ग्राहकको नाम" : "Organization / Client Name"}</label>
-            <input type="text" id="org" name="organization" placeholder={isNe ? "जस्तै, सडक विभाग, कर्णाली" : "e.g., Department of Roads, Karnali"} required />
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">{isNe ? "पूरा नाम" : "Full Name"}</label>
+              <input type="text" id="name" name="name" placeholder={isNe ? "तपाईंको नाम" : "Your name"} required />
+            </div>
+            <div class="form-group">
+              <label for="org">{isNe ? "संस्थाको नाम" : "Organization"}</label>
+              <input type="text" id="org" name="organization" placeholder={isNe ? "जस्तै, सडक विभाग, कर्णाली" : "e.g., Department of Roads, Karnali"} required />
+            </div>
           </div>
+
           <div class="form-group">
             <label for="email">{isNe ? "इमेल ठेगाना" : "Email Address"}</label>
             <input type="email" id="email" name="email" placeholder="name@domain.com" required />
           </div>
+
+          <div class="form-group">
+            <label for="project-type">{isNe ? "परियोजना प्रकार" : "Project Type"}</label>
+            <select id="project-type" name="project_type" required>
+              {projectTypes.map((opt) => (
+                <option value={opt.value} disabled={opt.value === ""}>{opt.label}</option>
+              ))}
+            </select>
+          </div>
+
           <div class="form-group">
             <label for="message">{isNe ? "परियोजना विवरण" : "Project Scope & Details"}</label>
             <textarea id="message" name="message" rows={4} placeholder={isNe ? "आवश्यक सिभिल कार्य, ऊर्जा प्रणाली, वा अध्ययनको संक्षिप्त विवरण..." : "Briefly describe the civil works, energy system, or study required..."} required></textarea>
           </div>
+
           <div class="form-group">
             <label for="file">{isNe ? "RFP / टेन्डर दस्तावेज अपलोड गर्नुहोस् (वैकल्पिक)" : "Upload RFP / Tender Documents (Optional)"}</label>
             <input type="file" id="file" name="tender_doc" />
           </div>
+
           <button type="submit" class="btn btn-primary btn-submit">
             {isNe ? "टेन्डर सोधपुछ पेश गर्नुहोस्" : "Submit Tender Enquiry"}
           </button>
@@ -137,6 +183,9 @@ const benefits = isNe
     color: var(--color-forest-deep);
     font-weight: 500;
   }
+  .social-links a:hover {
+    color: var(--color-gold);
+  }
   .contact-form-wrap {
     background-color: var(--color-white);
     padding: 2.5rem;
@@ -146,6 +195,11 @@ const benefits = isNe
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
   }
   .form-group {
     display: flex;
@@ -158,7 +212,8 @@ const benefits = isNe
     color: var(--color-slate-dark);
   }
   .form-group input,
-  .form-group textarea {
+  .form-group textarea,
+  .form-group select {
     padding: 0.75rem 1rem;
     border: 1px solid var(--color-slate-light);
     font-family: var(--font-body);
@@ -167,18 +222,21 @@ const benefits = isNe
     transition: border-color var(--transition), box-shadow var(--transition);
   }
   .form-group input:hover,
-  .form-group textarea:hover {
+  .form-group textarea:hover,
+  .form-group select:hover {
     border-color: var(--color-forest-mid);
   }
   .form-group input:focus,
-  .form-group textarea:focus {
+  .form-group textarea:focus,
+  .form-group select:focus {
     outline: none;
     border-color: var(--color-forest-mid);
     box-shadow: 0 0 0 3px rgba(46, 90, 68, 0.1);
     background-color: var(--color-white);
   }
   .form-group input.error,
-  .form-group textarea.error {
+  .form-group textarea.error,
+  .form-group select.error {
     border-color: #c0392b;
   }
   .form-group input::placeholder,
@@ -191,15 +249,25 @@ const benefits = isNe
   .form-group textarea:focus::placeholder {
     opacity: 0.3;
   }
-  .form-group input::placeholder,
-  .form-group textarea::placeholder {
-    color: var(--color-slate-mid);
-    opacity: 0.6;
+  .form-group select {
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%23636E72'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23636E72' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+  .form-group select:focus {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%232E5A44'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232E5A44' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
   }
   .btn-submit {
     width: 100%;
     justify-content: center;
     padding: 1rem;
+  }
+  .btn-submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(27, 58, 45, 0.25);
   }
 
   @media (max-width: 768px) {
@@ -212,6 +280,9 @@ const benefits = isNe
     }
     .contact-form-wrap {
       padding: 1.5rem;
+    }
+    .form-row {
+      grid-template-columns: 1fr;
     }
   }
 </style>
