@@ -1,0 +1,279 @@
+---
+const { lang = "ne" } = Astro.props;
+const isNe = lang === "ne";
+
+const images = [
+  { src: "/images/503741025_4259033944327469_3136576886752811496_n.jpg", alt: isNe ? "त्रिशला जलविद्युत आयोजनाको निर्माण कार्य" : "Trishna Hydropower project construction site" },
+  { src: "/images/504402031_4259034227660774_6669739287275391894_n.jpg", alt: isNe ? "जडान गरिएका भारी उपकरणहरू" : "Heavy equipment and pipes installed at site" },
+  { src: "/images/504339976_4259033907660806_7239369817901604767_n.jpg", alt: isNe ? "इन्जिनियरिङ र संरचनात्मक काम" : "Structural and engineering works" },
+  { src: "/images/503204468_4253608371536693_3160925807023882459_n.jpg", alt: isNe ? "विद्युत गृह र टर्बाइन क्षेत्र" : "Powerhouse and turbine installation" },
+  { src: "/images/503830422_4259034177660779_5199995504336632996_n.jpg", alt: isNe ? "खोला फर्काउने र बाँधको काम" : "River diversion and dam structure" },
+  { src: "/images/503539372_4253608074870056_9158260055573759598_n.jpg", alt: isNe ? "निरीक्षण र गुणस्तर नियन्त्रण" : "Site inspection and quality control" },
+];
+
+const title = isNe ? "विशेष आयोजना: तृष्णा जलविद्युत" : "Featured Project: Trishna Hydropower";
+const subtitle = isNe ? "हाम्रो पछिल्लो ईन्जिनियरिङ माइलस्टोन" : "Our Latest Engineering Milestone";
+const desc = isNe
+  ? "तृष्णा जलविद्युत आयोजना सूर्य किरण रिन्युएबल एनर्जीको ईन्जिनियरिङ, सिभिल निर्माण, र नवीकरणीय ऊर्जाको एकीकृत क्षमताको बलियो प्रमाण हो। कर्णाली प्रदेशको कठिन भूगोलमा स्थापित यस आयोजनाले कठिन वातावरणमा पनि हाम्रा दक्ष प्राविधिक र इन्जिनियरहरूको टोलीले देखाएको कार्यदक्षता र प्राविधिक उत्कृष्टतालाई उजागर गर्दछ।"
+  : "The Trishna Hydropower Project stands as a testament to Surya Kiran Renewable Energy's integrated capabilities in engineering, civil construction, and renewable energy. Built in the challenging terrains of Karnali Province, this project highlights the resilience and technical excellence of our site engineers and construction specialists working under extreme conditions.";
+
+const videoTitle = isNe ? "आयोजनाको भिडियो अवलोकन" : "Project Video Overview";
+const videoDesc = isNe
+  ? "हाम्रो निर्माण टोलीले खिचेको वास्तविक स्थलगत भिडियो मार्फत तृष्णा जलविद्युत आयोजनाको प्रत्यक्ष प्रगति र प्रविधि अवलोकन गर्नुहोस्।"
+  : "Watch the firsthand site footage captured by our construction crew showing the real-time progress and heavy machinery installation at Trishna Hydropower.";
+const downloadLabel = isNe ? "आयोजनाको भिडियो डाउनलोड गर्नुहोस् (.wmv)" : "Download Project Video (.wmv)";
+---
+
+<section class="section project-showcase animate-section" id="showcase">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-tag">{subtitle}</span>
+      <h2 class="section-heading">{title}</h2>
+      <hr class="section-rule center" />
+      <p class="section-subheading max-w-3xl mx-auto">{desc}</p>
+    </div>
+
+    <div class="showcase-content">
+      <!-- Left side: Video & Tech Info -->
+      <div class="showcase-video-card">
+        <h3 class="video-card-title">{videoTitle}</h3>
+        <p class="video-card-desc">{videoDesc}</p>
+        
+        <div class="video-container">
+          <video class="video-player" controls preload="metadata" poster="/images/503741025_4259033944327469_3136576886752811496_n.jpg">
+            <source src="/images/wind-video.wmv" type="video/x-ms-wmv" />
+            Your browser does not support playing WMV files directly. You can download the video using the link below to watch it locally.
+          </video>
+          <div class="video-fallback-overlay">
+            <span class="video-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="23 7 16 12 23 17 23 7" fill="#C5A55A" stroke="#C5A55A"/>
+                <rect x="1" y="5" width="15" height="14" rx="2" ry="2" fill="rgba(255,255,255,0.1)"/>
+              </svg>
+            </span>
+            <p>{isNe ? "वेब ब्राउजरमा सिधै प्ले नभएमा तलको बटनबाट डाउनलोड गर्नुहोस्।" : "Play locally or download the video from the link below."}</p>
+          </div>
+        </div>
+
+        <a href="/images/wind-video.wmv" download class="btn btn-primary download-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          {downloadLabel}
+        </a>
+      </div>
+
+      <!-- Right side: Image Gallery Grid -->
+      <div class="showcase-gallery">
+        <div class="gallery-grid">
+          {images.map((img) => (
+            <div class="gallery-item">
+              <img src={img.src} alt={img.alt} class="gallery-img" loading="lazy" />
+              <div class="gallery-overlay">
+                <span class="gallery-alt">{img.alt}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .project-showcase {
+    background-color: var(--color-white);
+    padding: 6rem 0;
+    border-top: 1px solid var(--color-slate-light);
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .max-w-3xl {
+    max-width: 48rem;
+  }
+  
+  .mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .showcase-content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3rem;
+    margin-top: 4rem;
+    align-items: start;
+  }
+
+  /* Video Card */
+  .showcase-video-card {
+    background-color: var(--color-forest-deep);
+    color: var(--color-white);
+    padding: 2.5rem;
+    border-radius: var(--border-radius, 8px);
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .video-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-gold);
+  }
+
+  .video-card-desc {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #000;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .video-fallback-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .video-fallback-overlay p {
+    font-size: 0.75rem;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.4;
+  }
+
+  .video-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gold);
+  }
+
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.5rem;
+    width: 100%;
+    margin-top: 0.5rem;
+    font-weight: 600;
+    background-color: var(--color-gold);
+    color: var(--color-forest-deep);
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .download-btn:hover {
+    background-color: var(--color-white);
+    color: var(--color-forest-deep);
+    transform: translateY(-2px);
+  }
+
+  /* Gallery Grid */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .gallery-item {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    cursor: pointer;
+    background-color: var(--color-slate-light);
+  }
+
+  .gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 1.25rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .gallery-alt {
+    color: var(--color-white);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transform: translateY(10px);
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-item:hover .gallery-img {
+    transform: scale(1.08);
+  }
+
+  .gallery-item:hover .gallery-overlay {
+    opacity: 1;
+  }
+
+  .gallery-item:hover .gallery-alt {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 992px) {
+    .showcase-content {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+    .showcase-video-card {
+      padding: 1.5rem;
+    }
+  }
+</style>

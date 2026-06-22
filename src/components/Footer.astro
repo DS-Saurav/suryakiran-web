@@ -41,8 +41,13 @@ const content = lang === "ne" ? {
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <span class="logo-name">SURYA KIRAN</span>
-        <span class="logo-sub">Renewable Energy</span>
+        <a href={`${prefix}/`} class="footer-logo">
+          <img src="/images/final-logo.png" alt="Surya Kiran Logo" class="footer-logo-img" />
+          <span class="logo-text">
+            <span class="logo-name">SURYA KIRAN</span>
+            <span class="logo-sub">Renewable Energy</span>
+          </span>
+        </a>
         <p class="footer-tagline" set:html={content.tagline}></p>
         <span class="footer-architects">{content.architects}</span>
       </div>
@@ -93,13 +98,28 @@ const content = lang === "ne" ? {
     flex-direction: column;
     gap: 1rem;
   }
-  .footer-brand .logo-name {
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+  .footer-logo-img {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+  }
+  .footer-logo .logo-text {
+    display: flex;
+    flex-direction: column;
+  }
+  .footer-logo .logo-name {
     font-family: var(--font-heading);
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--color-white);
   }
-  .footer-brand .logo-sub {
+  .footer-logo .logo-sub {
     font-size: 0.6875rem;
     color: var(--color-slate-light);
     letter-spacing: 0.08em;

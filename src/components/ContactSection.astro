@@ -60,7 +60,7 @@ const projectTypes = isNe ? projectTypesNE : projectTypesEN;
         <div class="contact-details">
           <div class="detail-item">
             <strong>{isNe ? "कार्यालय" : "Office"}</strong>
-            <p>{isNe ? "वीरेन्द्रनगर, सुर्खेत<br/>कर्णाली प्रदेश, नेपाल" : "Birendranagar, Surkhet<br/>Karnali Province, Nepal"}</p>
+            <p set:html={isNe ? "वीरेन्द्रनगर, सुर्खेत<br/>कर्णाली प्रदेश, नेपाल" : "Birendranagar, Surkhet<br/>Karnali Province, Nepal"}></p>
           </div>
           <div class="detail-item">
             <strong>{isNe ? "इमेल" : "Email"}</strong>
