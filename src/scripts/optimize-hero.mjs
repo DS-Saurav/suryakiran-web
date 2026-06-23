@@ -11,11 +11,11 @@ const inputPath = resolve(
 );
 const outputWebP = resolve(
   projectRoot,
-  "public/images/hero-trishna-hydro.webp"
+  "public/images/hero-construction.webp"
 );
 const outputSmallWebP = resolve(
   projectRoot,
-  "public/images/hero-trishna-hydro-small.webp"
+  "public/images/hero-construction-small.webp"
 );
 
 async function optimize() {
