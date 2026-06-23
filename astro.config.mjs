@@ -15,4 +15,5 @@ export default defineConfig({
     },
   },
   site: "https://suryakiran.vercel.app",
+  trailingSlash: "always",
 });

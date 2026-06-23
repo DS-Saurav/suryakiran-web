@@ -3,12 +3,29 @@ const { lang = "ne" } = Astro.props;
 const isNe = lang === "ne";
 
 const images = [
-  { src: "/images/503741025_4259033944327469_3136576886752811496_n.jpg", alt: isNe ? "त्रिशला जलविद्युत आयोजनाको निर्माण कार्य" : "Trishna Hydropower project construction site" },
-  { src: "/images/504402031_4259034227660774_6669739287275391894_n.jpg", alt: isNe ? "जडान गरिएका भारी उपकरणहरू" : "Heavy equipment and pipes installed at site" },
-  { src: "/images/504339976_4259033907660806_7239369817901604767_n.jpg", alt: isNe ? "इन्जिनियरिङ र संरचनात्मक काम" : "Structural and engineering works" },
-  { src: "/images/503204468_4253608371536693_3160925807023882459_n.jpg", alt: isNe ? "विद्युत गृह र टर्बाइन क्षेत्र" : "Powerhouse and turbine installation" },
-  { src: "/images/503830422_4259034177660779_5199995504336632996_n.jpg", alt: isNe ? "खोला फर्काउने र बाँधको काम" : "River diversion and dam structure" },
-  { src: "/images/503539372_4253608074870056_9158260055573759598_n.jpg", alt: isNe ? "निरीक्षण र गुणस्तर नियन्त्रण" : "Site inspection and quality control" },
+  // ── Row 1: Project Overview ──
+  { src: "/images/503741025_4259033944327469_3136576886752811496_n.jpg", webp: "/images/503741025_4259033944327469_3136576886752811496_n.webp", alt: isNe ? "त्रिशला जलविद्युत आयोजनाको निर्माण कार्य" : "Trishna Hydropower project construction site" },
+  { src: "/images/507780346_4269753469922183_2888494192748927352_n.jpg", webp: "/images/507780346_4269753469922183_2888494192748927352_n.webp", alt: isNe ? "आयोजनाको हालैको प्रगति र संरचनात्मक विकास" : "Recent project progress and structural development" },
+
+  // ── Row 2: Heavy Machinery & Equipment ──
+  { src: "/images/504402031_4259034227660774_6669739287275391894_n.jpg", webp: "/images/504402031_4259034227660774_6669739287275391894_n.webp", alt: isNe ? "जडान गरिएका भारी उपकरणहरू" : "Heavy equipment and pipes installed at site" },
+  { src: "/images/497679946_4235101540054043_2731219639738009839_n.jpg", webp: "/images/497679946_4235101540054043_2731219639738009839_n.webp", alt: isNe ? "निर्माण स्थलमा मेसिनरी र उपकरण जडान" : "Machinery and equipment installation at the project site" },
+
+  // ── Row 3: Engineering & Structural Works ──
+  { src: "/images/504339976_4259033907660806_7239369817901604767_n.jpg", webp: "/images/504339976_4259033907660806_7239369817901604767_n.webp", alt: isNe ? "इन्जिनियरिङ र संरचनात्मक काम" : "Structural and engineering works" },
+  { src: "/images/497611388_4234292090134988_4378955904610660149_n.jpg", webp: "/images/497611388_4234292090134988_4378955904610660149_n.webp", alt: isNe ? "प्राविधिक र इन्जिनियरिङ निरीक्षण कार्य" : "Technical and engineering inspection in progress" },
+
+  // ── Row 4: Powerhouse & Turbine ──
+  { src: "/images/503204468_4253608371536693_3160925807023882459_n.jpg", webp: "/images/503204468_4253608371536693_3160925807023882459_n.webp", alt: isNe ? "विद्युत गृह र टर्बाइन क्षेत्र" : "Powerhouse and turbine installation" },
+  { src: "/images/497476663_4234291636801700_5825176604175992591_n.jpg", webp: "/images/497476663_4234291636801700_5825176604175992591_n.webp", alt: isNe ? "टर्बाइन र यान्त्रिक उपकरण जडान" : "Turbine and mechanical equipment assembly" },
+
+  // ── Row 5: Dam & River Works ──
+  { src: "/images/503830422_4259034177660779_5199995504336632996_n.jpg", webp: "/images/503830422_4259034177660779_5199995504336632996_n.webp", alt: isNe ? "खोला फर्काउने र बाँधको काम" : "River diversion and dam structure" },
+  { src: "/images/503830420_4259034317660765_3616527313333635499_n.jpg", webp: "/images/503830420_4259034317660765_3616527313333635499_n.webp", alt: isNe ? "बाँध संरचना र जल प्रवाह व्यवस्थापन" : "Dam structure and water flow management" },
+
+  // ── Row 6: Quality & Team ──
+  { src: "/images/503539372_4253608074870056_9158260055573759598_n.jpg", webp: "/images/503539372_4253608074870056_9158260055573759598_n.webp", alt: isNe ? "निरीक्षण र गुणस्तर नियन्त्रण" : "Site inspection and quality control" },
+  { src: "/images/502088608_4252532104977653_6409724636672559732_n.jpg", webp: "/images/502088608_4252532104977653_6409724636672559732_n.webp", alt: isNe ? "टोली सहकार्य र निर्माण अग्रिम" : "Team collaboration and construction advancement" },
 ];
 
 const title = isNe ? "विशेष आयोजना: तृष्णा जलविद्युत" : "Featured Project: Trishna Hydropower";
@@ -70,7 +87,10 @@ const downloadLabel = isNe ? "आयोजनाको भिडियो डा
         <div class="gallery-grid">
           {images.map((img) => (
             <div class="gallery-item">
-              <img src={img.src} alt={img.alt} class="gallery-img" loading="lazy" />
+              <picture>
+                <source srcset={img.webp} type="image/webp" />
+                <img src={img.src} alt={img.alt} class="gallery-img" loading="lazy" />
+              </picture>
               <div class="gallery-overlay">
                 <span class="gallery-alt">{img.alt}</span>
               </div>
@@ -209,8 +229,8 @@ const downloadLabel = isNe ? "आयोजनाको भिडियो डा
   /* Gallery Grid */
   .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.875rem;
   }
 
   .gallery-item {
@@ -221,6 +241,12 @@ const downloadLabel = isNe ? "आयोजनाको भिडियो डा
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     cursor: pointer;
     background-color: var(--color-slate-light);
+  }
+
+  .gallery-item picture {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 
   .gallery-img {
@@ -265,6 +291,12 @@ const downloadLabel = isNe ? "आयोजनाको भिडियो डा
     .showcase-content {
       grid-template-columns: 1fr;
       gap: 2.5rem;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
